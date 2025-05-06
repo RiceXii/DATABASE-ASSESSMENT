@@ -22,5 +22,13 @@ except ImportError:
 header = ['ID', 'NAME', 'CATEGORY', 'PRICE']
 
 # Establish a database connection
-connection = sqlite3.connect("")
+connection = sqlite3.connect("canteen.db")
 cursor = connection.cursor()
+
+# Function to check if a food ID exists in the database
+def findID(id):
+    data = [id]
+    cursor.execute('SELECT food_id FROM food WHERE food_id =?', data)
+    viewid = cursor.fetchall()
+    if viewid:
+        return True
