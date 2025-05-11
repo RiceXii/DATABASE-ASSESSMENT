@@ -3,7 +3,7 @@ BURNSIDE HIGH SCHOOl Canteen Menu Database
 
 """
 
-
+import time
 import subprocess
 import sys
 import sqlite3
@@ -68,7 +68,7 @@ def staff_login(max_attempts=3):
 
 #Welcom users
 print('Welcome to the Burnside High School online canteen menu!')
-
+time.sleep(1.5)
 #Main program loop
 while True:
     
@@ -93,8 +93,10 @@ while True:
 
     if main_menu == 'D':
         
+        # Call login function
         if staff_login():
             print('loading...')
+            time.sleep(1)
         else:
             continue
 
