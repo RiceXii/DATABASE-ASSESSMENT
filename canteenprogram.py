@@ -7,6 +7,7 @@ import time
 import subprocess
 import sys
 import sqlite3
+import os
 
 # Try importing tabulate, if not installed, install it using pip
 try:
@@ -25,8 +26,12 @@ header = ['ID', 'ITEM', 'CATEGORY', 'PRICE']
 connection = sqlite3.connect("canteen.db")
 cursor = connection.cursor()
 
-#Password for staff only functions
+# Password for staff only functions
 password = 'burnsidehighschool'
+
+# Function to clear terminal
+def clearscreen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 # Function to display menu in the database using tabulate
 def displaymenu():
@@ -45,7 +50,7 @@ def findID(id):
         return True
     
 # Function for login system
-def staff_login(max_attempts=3):
+def stafflogin(max_attempts=3):
     
     for attempt in range(max_attempts):
         login = input('Enter password')
@@ -87,14 +92,16 @@ while True:
     
     
     if main_menu == 'C':
-        print('You chose view menu')
+        print('You chose view menu...')
+        time.sleep(1)
+        clearscreen()
         displaymenu()
         
 
     if main_menu == 'D':
         
         # Call login function
-        if staff_login():
+        if stafflogin():
             print('loading...')
             time.sleep(1)
         else:
